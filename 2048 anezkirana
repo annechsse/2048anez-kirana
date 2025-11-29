@@ -41,6 +41,60 @@ body {
   font-size: 20px;
 }
 </style>
+body {
+  font-family: Arial, sans-serif;
+  background: #d9c9ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  background: #6a5acd;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #ece0d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* WARNA SETIAP ANGKA */
+.cell[data-value="2"]  { background: #eee4da; }
+.cell[data-value="4"]  { background: #ede0c8; }
+.cell[data-value="8"]  { background: #f2b179; color: white; }
+.cell[data-value="16"] { background: #f59563; color: white; }
+.cell[data-value="32"] { background: #f67c5f; color: white; }
+.cell[data-value="64"] { background: #f65e3b; color: white; }
+.cell[data-value="128"] { background: #edcf72; }
+.cell[data-value="256"] { background: #edcc61; }
+.cell[data-value="512"] { background: #edc850; }
+.cell[data-value="1024"] { background: #edc53f; }
+.cell[data-value="2048"] { background: #edc22e; color: white; }
+
+.score {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: white;
+}
+</style>
 </head>
 <body>
 
