@@ -42,59 +42,43 @@ body {
 }
 </style>
 body {
+  background-color: #ffd6e8;
   font-family: Arial, sans-serif;
-  background: #d9c9ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .game-container {
-  background: #6a5acd;
+  background: #ff99cc;
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(4, 100px);
-  gap: 10px;
+.grid-container {
+  background: #ffb6d9;
 }
 
-.cell {
-  width: 100px;
-  height: 100px;
-  background: #ece0d1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-  font-weight: bold;
-  border-radius: 8px;
+.grid-cell {
+  background: #ffcce6;
 }
 
-/* WARNA SETIAP ANGKA */
-.cell[data-value="2"]  { background: #eee4da; }
-.cell[data-value="4"]  { background: #ede0c8; }
-.cell[data-value="8"]  { background: #f2b179; color: white; }
-.cell[data-value="16"] { background: #f59563; color: white; }
-.cell[data-value="32"] { background: #f67c5f; color: white; }
-.cell[data-value="64"] { background: #f65e3b; color: white; }
-.cell[data-value="128"] { background: #edcf72; }
-.cell[data-value="256"] { background: #edcc61; }
-.cell[data-value="512"] { background: #edc850; }
-.cell[data-value="1024"] { background: #edc53f; }
-.cell[data-value="2048"] { background: #edc22e; color: white; }
+.tile-2 { background: #ffe6f2; color: #d63384; }
+.tile-4 { background: #ffb3d9; color: #fff; }
+.tile-8 { background: #ff80bf; color: #fff; }
+.tile-16 { background: #ff4da6; color: #fff; }
+.tile-32 { background: #ff1a8c; color: #fff; }
+.tile-64 { background: #e60073; color: #fff; }
+.tile-128 { background: #cc0066; color: #fff; }
+.tile-256 { background: #b30059; color: #fff; }
+.tile-512 { background: #99004d; color: #fff; }
+.tile-1024 { background: #800040; color: #fff; }
+.tile-2048 { background: #660033; color: #fff; }
 
-.score {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 22px;
+button {
+  background-color: #ff66b2;
   color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
 }
-</style>
 </head>
 <body>
 
