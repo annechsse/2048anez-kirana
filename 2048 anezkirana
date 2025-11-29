@@ -1,0 +1,153 @@
+<title>2048 Anezka Kirana</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game 2048</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #faf8ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.game-container {
+  background: #bbada0;
+  padding: 10px;
+  border-radius: 10px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(4, 80px);
+  gap: 10px;
+}
+.cell {
+  width: 80px;
+  height: 80px;
+  background: #cdc1b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.score {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="game-container">
+  <div class="score">Score: <span id="score">0</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+let grid = [
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0]
+];
+let score = 0;
+
+const gridElement = document.getElementById("grid");
+const scoreElement = document.getElementById("score");
+
+function init() {
+  addNumber();
+  addNumber();
+  drawGrid();
+}
+
+function drawGrid() {
+  gridElement.innerHTML = "";
+  for (let row of grid) {
+    for (let cell of row) {
+      let div = document.createElement("div");
+      div.className = "cell";
+      div.textContent = cell === 0 ? "" : cell;
+      gridElement.appendChild(div);
+    }
+  }
+  scoreElement.textContent = score;
+}
+
+function addNumber() {
+  let options = [];
+  for (let i=0;i<4;i++) {
+    for (let j=0;j<4;j++) {
+      if (grid[i][j] === 0) options.push({i,j});
+    }
+  }
+  if (options.length === 0) return;
+  let spot = options[Math.floor(Math.random() * options.length)];
+  grid[spot.i][spot.j] = Math.random() > 0.5 ? 2 : 4;
+}
+
+function slide(row) {
+  let arr = row.filter(x => x !== 0);
+  for (let i=0;i<arr.length-1;i++) {
+    if (arr[i] === arr[i+1]) {
+      arr[i] *= 2;
+      score += arr[i];
+      arr[i+1] = 0;
+    }
+  }
+  arr = arr.filter(x => x !== 0);
+  while (arr.length < 4) arr.push(0);
+  return arr;
+}
+
+function moveLeft() {
+  for (let i=0;i<4;i++) grid[i] = slide(grid[i]);
+  addNumber();
+}
+
+function moveRight() {
+  for (let i=0;i<4;i++) grid[i] = slide(grid[i].reverse()).reverse();
+  addNumber();
+}
+
+function transpose() {
+  let newGrid = [[],[],[],[]];
+  for (let i=0;i<4;i++) {
+    for (let j=0;j<4;j++) {
+      newGrid[i][j] = grid[j][i];
+    }
+  }
+  grid = newGrid;
+}
+
+function moveUp() {
+  transpose();
+  moveLeft();
+  transpose();
+}
+
+function moveDown() {
+  transpose();
+  moveRight();
+  transpose();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "ArrowLeft") moveLeft();
+  if (e.key === "ArrowRight") moveRight();
+  if (e.key === "ArrowUp") moveUp();
+  if (e.key === "ArrowDown") moveDown();
+  drawGrid();
+});
+
+init();
+</script>
+
+</body>
+</html>
